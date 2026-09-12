@@ -432,7 +432,3 @@ The project can be further improved by:
 ## Author
 
 **Gopal Yadav**
-
-Computer Science graduate specializing in Machine Learning, Deep Learning, NLP, and Generative AI.
-
-GitHub: `gopalyadav-ai`
