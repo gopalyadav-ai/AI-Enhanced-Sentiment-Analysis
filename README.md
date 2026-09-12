@@ -2,44 +2,45 @@
 
 ## Project Overview
 
-This project focuses on sentiment analysis of text reviews using Natural Language Processing (NLP), Machine Learning, and Deep Learning techniques.
+This project is about sentiment analysis of text reviews using **NLP, Machine Learning, and Deep Learning**.
 
-The main goal is to classify a given review as either **Positive** or **Negative** and compare the performance of different Machine Learning and Deep Learning approaches.
+The main purpose of the project is to take a review as input and predict whether it is **Positive** or **Negative**.
 
-I independently implemented the data preprocessing, NLP pipeline, model training, evaluation, model comparison, model serialization, and Streamlit deployment, with guidance from my faculty mentor.
+I worked on the complete process starting from text preprocessing and model training to model evaluation and deployment using Streamlit. I also compared different Machine Learning and Deep Learning models to see how they perform on the same dataset.
 
 ---
 
 ## Project Objective
 
-The objectives of this project are to:
+The main objectives of this project are:
 
-* Perform text preprocessing using NLP techniques.
-* Convert textual data into numerical representations.
-* Build and evaluate Machine Learning models.
-* Build and evaluate Deep Learning models.
-* Compare different approaches using accuracy and other evaluation metrics.
-* Deploy the trained models through a Streamlit web application.
+* Preprocess text data using NLP techniques.
+* Convert text into a format that Machine Learning and Deep Learning models can use.
+* Train different Machine Learning models for sentiment classification.
+* Train different Deep Learning models for the same task.
+* Compare the performance of all the models.
+* Save the trained models for later use.
+* Build a Streamlit application for making predictions.
 * Store prediction history using SQLite.
 
 ---
 
 ## Key Features
 
-* Text preprocessing using NLP techniques.
+* Text preprocessing using NLP.
 * TF-IDF based Machine Learning models.
-* Tokenizer and sequence-based Deep Learning models.
-* Comparison of five different models.
-* Interactive Streamlit application.
+* Tokenizer and padded sequences for Deep Learning models.
+* Five different models for comparison.
 * Positive/Negative sentiment prediction.
+* Interactive Streamlit application.
 * SQLite database for storing prediction history.
-* Multiple trained models available for comparison.
+* Saved trained models for use in the application.
 
 ---
 
 ## Dataset
 
-The project uses a sentiment review dataset containing **999 reviews**.
+The project uses a sentiment review dataset containing **999 reviews** and **3 columns**.
 
 ### Dataset Details
 
@@ -53,39 +54,39 @@ The project uses a sentiment review dataset containing **999 reviews**.
 | Positive label   |           1 |
 | Negative label   |           0 |
 
-The dataset is nearly balanced between positive and negative reviews.
+The dataset is almost balanced, with 500 positive reviews and 499 negative reviews.
 
-The dataset contains the review text and its corresponding sentiment label.
+Each review has a corresponding sentiment label that is used for training and testing the models.
 
 ---
 
 ## NLP Preprocessing
 
-Text data cannot be directly provided to most Machine Learning models, so several preprocessing steps were performed.
+Before training the models, the review text was cleaned and preprocessed.
 
-### Preprocessing Pipeline
+The following steps were used:
 
 1. Convert text to lowercase.
 2. Remove punctuation.
 3. Remove numerical characters.
-4. Remove extra whitespace.
+4. Remove extra spaces.
 5. Tokenize the text.
 6. Remove English stopwords.
 7. Perform lemmatization.
 
-### Feature Representation
+### Text Representation
 
-Two different approaches were used.
+Different representations were used for the Machine Learning and Deep Learning models.
 
-**For Machine Learning models:**
+**Machine Learning models:**
 
 * TF-IDF Vectorization
 * Maximum features: 5000
 
-**For Deep Learning models:**
+**Deep Learning models:**
 
 * Keras Tokenizer
-* Sequence conversion
+* Convert text into sequences
 * Padding
 * Maximum sequence length: 100
 
@@ -93,37 +94,37 @@ Two different approaches were used.
 
 ## Machine Learning Models
 
-Two classical Machine Learning algorithms were implemented.
+I used two traditional Machine Learning models for sentiment classification.
 
-### 1. Logistic Regression
+### Logistic Regression
 
-Logistic Regression was used as a classification model to predict whether a review belongs to the positive or negative sentiment class.
+Logistic Regression was used as one of the baseline classification models to predict whether a review is positive or negative.
 
-### 2. Multinomial Naive Bayes
+### Multinomial Naive Bayes
 
-Multinomial Naive Bayes is commonly used for text classification because it works well with text features such as TF-IDF representations.
+Multinomial Naive Bayes is commonly used for text classification. It was used with the TF-IDF features generated from the review text.
 
 ---
 
 ## Deep Learning Models
 
-Three Deep Learning architectures were implemented.
+I also tested three recurrent neural network models.
 
-### 1. Simple RNN
+### Simple RNN
 
-A Simple Recurrent Neural Network was used to process sequential text data.
+A Simple Recurrent Neural Network was used to process the review as a sequence of words.
 
-### 2. Bidirectional RNN
+### Bidirectional RNN
 
-A Bidirectional RNN processes the sequence in both forward and backward directions, allowing the model to use information from both directions of the sequence.
+The Bidirectional RNN processes the sequence in both directions. This allows the model to use information from both the previous and following parts of the sequence.
 
-### 3. GRU
+### GRU
 
-A Gated Recurrent Unit (GRU) was implemented as another recurrent architecture for sequence-based sentiment classification.
+A Gated Recurrent Unit (GRU) was also used for sentiment classification. GRU is another type of recurrent neural network that can handle sequential data.
 
-### Common Architecture
+### Common Deep Learning Architecture
 
-The Deep Learning models use:
+The Deep Learning models used the following basic setup:
 
 * Embedding layer
 * 64-dimensional embedding representation
@@ -135,9 +136,9 @@ The Deep Learning models use:
 
 ---
 
-## Model Performance & Comparison
+## Model Performance
 
-The models were evaluated using test data.
+The five models were tested and their accuracy was compared.
 
 | Model               |  Accuracy |
 | ------------------- | --------: |
@@ -147,19 +148,19 @@ The models were evaluated using test data.
 | Bidirectional RNN   |     59.5% |
 | GRU                 |     76.5% |
 
-### Best Performing Model
+### Best Model
 
 **Multinomial Naive Bayes achieved the highest test accuracy of 78.0%.**
 
-Although the Deep Learning models were more complex, the classical Naive Bayes model performed slightly better on this particular dataset.
+GRU was the second-best model with an accuracy of 76.5%.
 
-This demonstrates that a more complex model does not always perform better than a simpler model, especially when the dataset is relatively small.
+One interesting result from this project was that the Deep Learning models did not automatically perform better than the traditional Machine Learning models. On this dataset, Naive Bayes gave the best result.
 
 ---
 
-## Evaluation
+## Model Evaluation
 
-For the Machine Learning models, the following evaluation techniques were used:
+For the Machine Learning models, I used:
 
 * Accuracy
 * Precision
@@ -168,17 +169,19 @@ For the Machine Learning models, the following evaluation techniques were used:
 * Confusion Matrix
 * Classification Report
 
-For the Deep Learning models, training behaviour was also analyzed using:
+For the Deep Learning models, I also looked at:
 
-* Binary cross-entropy loss
 * Training accuracy
 * Validation accuracy
+* Binary cross-entropy loss
+
+These metrics helped me compare the performance of the different models.
 
 ---
 
 ## Technologies Used
 
-### Programming Language
+### Programming
 
 * Python
 
@@ -187,7 +190,7 @@ For the Deep Learning models, training behaviour was also analyzed using:
 * Pandas
 * NumPy
 
-### Natural Language Processing
+### NLP
 
 * NLTK
 * TF-IDF
@@ -224,7 +227,7 @@ For the Deep Learning models, training behaviour was also analyzed using:
 
 * SQLite
 
-### Model Serialization
+### Model Saving
 
 * Pickle
 * Keras HDF5 (`.h5`)
@@ -234,32 +237,34 @@ For the Deep Learning models, training behaviour was also analyzed using:
 ## Project Workflow
 
 ```text
-                    Input Review
-                         |
-                         v
-                Text Preprocessing
-                         |
-          +--------------+--------------+
-          |                             |
-          v                             v
-     Machine Learning             Deep Learning
-          |                             |
-       TF-IDF                    Tokenization
-          |                             |
-    +-----+------+              Padding to 100
-    |            |                     |
-    v            v              +------+------+------+
-Logistic      Naive Bayes       |      |             |
-Regression                    RNN   BiRNN          GRU
-    |            |              |      |             |
-    +------------+--------------+------+-------------+
-                         |
-                         v
-                  Sentiment Result
-                  Positive / Negative
-                         |
-                         v
-                   SQLite Database
+Input Review
+     |
+     v
+Text Preprocessing
+     |
+     +-----------------------+
+     |                       |
+     v                       v
+Machine Learning       Deep Learning
+     |                       |
+   TF-IDF              Tokenization
+     |                       |
+     |                   Padding
+     |                       |
+  +--+------+          +-----+-----+-----+
+  |         |          |           |     |
+  v         v          v           v     v
+Logistic  Naive       RNN        BiRNN   GRU
+Regression Bayes
+  |         |          |           |     |
+  +---------+----------+-----------+-----+
+                    |
+                    v
+             Sentiment Result
+             Positive / Negative
+                    |
+                    v
+             SQLite Database
 ```
 
 ---
@@ -288,19 +293,19 @@ AI-Enhanced-Sentiment-Analysis/
 
 ### File Description
 
-| File                   | Purpose                                       |
-| ---------------------- | --------------------------------------------- |
-| `app.py`               | Streamlit application                         |
-| `.ipynb`               | Complete project notebook                     |
-| `lr_model.pkl`         | Trained Logistic Regression model             |
-| `nb_model.pkl`         | Trained Naive Bayes model                     |
-| `tfidf.pkl`            | Saved TF-IDF vectorizer                       |
-| `tokenizer.pkl`        | Saved Keras tokenizer                         |
-| `rnn_model.h5`         | Trained Simple RNN                            |
-| `birnn_model.h5`       | Trained Bidirectional RNN                     |
-| `gru_model.h5`         | Trained GRU model                             |
-| `sentiment_reviews.db` | SQLite database containing prediction history |
-| `requirements.txt`     | Python dependencies                           |
+| File                   | Purpose                                        |
+| ---------------------- | ---------------------------------------------- |
+| `app.py`               | Streamlit application                          |
+| `.ipynb`               | Project notebook containing the implementation |
+| `lr_model.pkl`         | Saved Logistic Regression model                |
+| `nb_model.pkl`         | Saved Naive Bayes model                        |
+| `tfidf.pkl`            | Saved TF-IDF vectorizer                        |
+| `tokenizer.pkl`        | Saved Keras tokenizer                          |
+| `rnn_model.h5`         | Saved Simple RNN model                         |
+| `birnn_model.h5`       | Saved Bidirectional RNN model                  |
+| `gru_model.h5`         | Saved GRU model                                |
+| `sentiment_reviews.db` | SQLite database used for prediction history    |
+| `requirements.txt`     | Python dependencies                            |
 
 ---
 
@@ -312,13 +317,13 @@ Clone the repository:
 git clone https://github.com/gopalyadav-ai/AI-Enhanced-Sentiment-Analysis.git
 ```
 
-Move into the project directory:
+Go to the project folder:
 
 ```bash
 cd AI-Enhanced-Sentiment-Analysis
 ```
 
-Install the required Python packages:
+Install the required libraries:
 
 ```bash
 pip install -r requirements.txt
@@ -326,28 +331,28 @@ pip install -r requirements.txt
 
 ---
 
-## How to Run the Application
+## How to Run
 
-Run the Streamlit application using:
+To start the Streamlit application, run:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-After running the command, Streamlit will provide a local URL where the application can be opened in a web browser.
+After running the command, Streamlit will provide a local URL. Open that URL in a browser to use the application.
 
 ---
 
 ## Streamlit Application
 
-The application provides an interactive interface where the user can:
+The application allows the user to:
 
-1. Enter a text review.
-2. Select one of the five available models.
+1. Enter a review.
+2. Select a model.
 3. Click **Predict Sentiment**.
-4. View the predicted sentiment.
-5. Store the prediction in the SQLite database.
-6. View previously stored reviews.
+4. Get the predicted sentiment.
+5. Save the prediction in the database.
+6. View previously stored predictions.
 
 ### Available Models
 
@@ -357,45 +362,53 @@ The application provides an interactive interface where the user can:
 * Bidirectional RNN
 * GRU
 
-The application uses the appropriate preprocessing pipeline depending on the selected model.
+The application uses different preprocessing depending on the selected model.
 
-For Machine Learning models, the review is transformed using the saved TF-IDF vectorizer.
+For the Machine Learning models, the review is converted into TF-IDF features using the saved TF-IDF vectorizer.
 
-For Deep Learning models, the review is converted into sequences using the saved tokenizer and padded to a maximum length of 100.
+For the Deep Learning models, the review is converted into a sequence using the saved Keras tokenizer and then padded to a maximum length of 100.
 
 ---
 
 ## SQLite Database
 
-The application uses SQLite to store prediction history.
+The application uses **SQLite** to store the prediction history.
 
-The database contains a `reviews` table with the following fields:
+The database contains a `reviews` table.
 
 | Column      | Description                       |
 | ----------- | --------------------------------- |
 | `id`        | Automatically generated record ID |
-| `review`    | User-entered review               |
-| `model`     | Model used for prediction         |
+| `review`    | Review entered by the user        |
+| `model`     | Model selected for prediction     |
 | `sentiment` | Predicted sentiment               |
 
-The application also provides a **Show Stored Reviews** option to retrieve and display the stored prediction history.
+The application also has a **Show Stored Reviews** option to display the previous predictions stored in the database.
 
 ---
 
 ## Results & Conclusion
 
-Five different approaches were implemented and compared.
+In this project, I compared **five different models** for sentiment classification.
 
-The results showed that **Multinomial Naive Bayes achieved the highest accuracy of 78.0%**, followed by GRU with 76.5%.
+The results were:
 
-The experiment shows that traditional Machine Learning methods can perform competitively with Deep Learning models on a relatively small text dataset.
+* Logistic Regression: **77.5%**
+* Naive Bayes: **78.0%**
+* Simple RNN: **63.0%**
+* Bidirectional RNN: **59.5%**
+* GRU: **76.5%**
 
-The project demonstrates the complete workflow of a text classification system:
+Naive Bayes gave the best test accuracy of **78.0%** on this dataset.
+
+The main thing I learned from the comparison was that a more complex Deep Learning model does not always give better results. For this particular dataset, the traditional Naive Bayes model performed better than the Deep Learning models.
+
+The project also helped me understand the complete process of building a text classification application:
 
 ```text
 Data
   ↓
-NLP Preprocessing
+Text Preprocessing
   ↓
 Feature Representation
   ↓
@@ -405,27 +418,27 @@ Model Evaluation
   ↓
 Model Comparison
   ↓
-Model Serialization
+Saving Trained Models
   ↓
-Streamlit Deployment
+Streamlit Application
   ↓
-SQLite Storage
+SQLite Database
 ```
 
 ---
 
 ## Future Improvements
 
-The project can be further improved by:
+Some improvements I would like to make in the future are:
 
-* Using a larger and more diverse dataset.
-* Performing hyperparameter tuning.
-* Experimenting with Transformer-based models such as BERT.
-* Adding prediction confidence scores.
-* Adding timestamps to prediction history.
-* Improving the review-history interface.
-* Deploying the application to a cloud platform.
-* Comparing the current models with modern Transformer-based approaches.
+* Use a larger and more diverse dataset.
+* Perform more hyperparameter tuning.
+* Try Transformer-based models such as BERT.
+* Add prediction confidence scores.
+* Add timestamps to the prediction history.
+* Improve the prediction-history interface.
+* Deploy the application on a cloud platform.
+* Compare the existing models with modern Transformer-based models.
 
 ---
 
